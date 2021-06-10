@@ -1,25 +1,60 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import { Switch, Route, NavLink, Link } from "react-router-dom";
+//private route
+import PrivateRoute from "./Components/Security/PrivateRoute";
+// Components
+import Home from "./Components/DashBoard/Home";
+import Business from "./Components/Business/index";
+import Users from "./Components/Users/index";
+import AdminPanel from "./Components/adminpanel/index";
+import SignIn from "./Components/Authentication/signinpage";
+import FillEmail from "./Components/Authentication/forgetpassword/fillemail";
+import ChangePasswordPage from "./Components/Authentication/forgetpassword/changepassword";
+import AccessPanel from "./Components/accesspanel/index";
 
-function App() {
+import { useDispatch, useSelector } from "react-redux";
+
+import { isUserLogin } from "./actions/auth";
+
+const App = () => {
+  // check if user already login if true direct to home
+  let auth = useSelector((state) => state.auth);
+
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (!auth.authenticate) {
+      dispatch(isUserLogin());
+    }
+    // dispatch(getInitialData());
+  }, []);
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <Switch>
+        <PrivateRoute path="/" exact component={Home} />
+
+        <Route path="/signin" exact>
+          <SignIn />
+        </Route>
+        <Route path="/verifyEmail" exact>
+          <FillEmail />
+        </Route>
+        <PrivateRoute path="/business" exact component={Business} />
+
+        <PrivateRoute path="/users" exact component={Users} />
+        <PrivateRoute path="/queries" exact component={AdminPanel} />
+        <PrivateRoute path="/accesspanel" exact component={AccessPanel} />
+        <Route render={(props) => <ChangePasswordPage {...props} />} />
+
+        {/* <PrivateRoute path="/page" exact component={Page} /> */}
+
+        {/* <Route path="/signup" exact>
+          <Signup />
+        </Route> */}
+      </Switch>
+    </>
   );
-}
+};
 
 export default App;
