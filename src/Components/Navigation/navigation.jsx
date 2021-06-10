@@ -123,6 +123,7 @@ export default function Header(props) {
     else if((name =="Access")){
       history.push("/accesspanel")
     }
+    
   };
   //signout function
   const signoutFun = () => {

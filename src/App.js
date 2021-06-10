@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Switch, Route, NavLink, Link } from "react-router-dom";
+import { Switch, Route,Redirect } from "react-router-dom";
 //private route
 import PrivateRoute from "./Components/Security/PrivateRoute";
 // Components
@@ -45,7 +45,10 @@ const App = () => {
         <PrivateRoute path="/users" exact component={Users} />
         <PrivateRoute path="/queries" exact component={AdminPanel} />
         <PrivateRoute path="/accesspanel" exact component={AccessPanel} />
-        <Route render={(props) => <ChangePasswordPage {...props} />} />
+        <Route path="/changepassword" render={(props) => <ChangePasswordPage {...props} />} />
+        {/* <Route path="*" component={SignIn}  /> */}
+        <Route render={() => <Redirect to={{pathname: "/"}} />} />
+
 
         {/* <PrivateRoute path="/page" exact component={Page} /> */}
 

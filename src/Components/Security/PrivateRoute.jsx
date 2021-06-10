@@ -2,6 +2,8 @@ import React from "react";
 import { Redirect, Route } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { accessspecificrole } from "../../actions/auth";
+import { logout } from "../../actions/auth";
+
 const PrivateRoute = ({ component: Component, ...remaining }) => {
   const dispatch = useDispatch();
 
@@ -9,9 +11,12 @@ const PrivateRoute = ({ component: Component, ...remaining }) => {
     <Route
       {...remaining}
       component={(props) => {
-        //Direct user to home page if user login else redirect to sign in
+        // Direct user to home page if user login else redirect to sign in
         const token = window.localStorage.getItem("token");
-        if (token) {
+        // return <Component {...props} />;
+        
+        if (token!==undefined ||token!=null) {
+         console.log(props.location)
           if (props.location.pathname == "/") {
             try {
               dispatch(
@@ -25,6 +30,8 @@ const PrivateRoute = ({ component: Component, ...remaining }) => {
               });
               return <Component {...props} />;
             } catch (e) {
+              dispatch(logout());
+
               return <Redirect to={"/signin"} />;
             }
           } else if (props.location.pathname == "/accesspanel") {

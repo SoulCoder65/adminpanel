@@ -71,7 +71,6 @@ const Home = () => {
   };
   const handleCustomerschange=(e)=>{
     setsearchcustomerKey(e.target.value);
-    console.log(e.target.value);
     dispatch(getUserData(e.target.value));
   
 
