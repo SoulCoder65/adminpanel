@@ -1,23 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import FusionCharts from "fusioncharts";
 import charts from "fusioncharts/fusioncharts.charts";
 import ReactFusioncharts from "react-fusioncharts";
 import GammelTheme from "fusioncharts/themes/fusioncharts.theme.gammel";
 import ReactFC from "react-fusioncharts";
-import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: theme.spacing(3),
-    padding: theme.spacing(2),
-    maxHeight: "340",
-    width: "90vw",
-    // margin:"auto"
-    [theme.breakpoints.down("md")]: {
-      width: "80vw",
-    },
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     marginTop: theme.spacing(3),
+//     padding: theme.spacing(2),
+//     maxHeight: "340",
+//     width: "90vw",
+//     // margin:"auto"
+//     [theme.breakpoints.down("md")]: {
+//       width: "80vw",
+//     },
+//   },
+// }));
 
 charts(FusionCharts);
 ReactFC.fcRoot(FusionCharts, GammelTheme);
@@ -27,22 +26,22 @@ const Usersstats = ({ users, check }) => {
   const dataValues = [];
 
   try {
-    if (users.data[0] != undefined) {
-      if (check == "sevendays") {
+    if (users.data[0] !== undefined) {
+      if (check === "sevendays") {
         Object.keys(users.data[0].sevendays).map((data, index) => {
           labels.push({ label: data });
         });
         Object.values(users.data[0].sevendays).map((data, index) => {
           dataValues.push({ value: data });
         });
-      } else if (check == "month") {
+      } else if (check === "month") {
         Object.keys(users.data[0].currstats).map((data, index) => {
           labels.push({ label: data });
         });
         Object.values(users.data[0].currstats).map((data, index) => {
           dataValues.push({ value: data });
         });
-      } else if (check == "lst24hrs") {
+      } else if (check === "lst24hrs") {
         Object.keys(users.data[0].last24hrs).map((data, index) => {
           labels.push({ label: data });
         });
@@ -59,7 +58,6 @@ const Usersstats = ({ users, check }) => {
       }
     }
   } catch (error) {
-    console.log(error);
    }
   const dataSource = {
     chart: {
@@ -74,7 +72,7 @@ const Usersstats = ({ users, check }) => {
       // forceYAxisValueDecimals: "0",
       sForceDecimals: "1",
 
-      plottooltext: "<b>$dataValue</b> acoounts Registered ",
+      plottooltext: "<b>$dataValue</b> accounts Registered ",
       theme: "gammel",
     },
     categories: [
@@ -90,8 +88,7 @@ const Usersstats = ({ users, check }) => {
     ],
   };
 
-  const classes = useStyles();
-
+ 
   return (
     <ReactFusioncharts
       type="msline"

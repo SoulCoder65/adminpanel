@@ -92,7 +92,7 @@ const AccessPanel = () => {
     setId(_id);
     try {
       dispatch(accessspecificrole(_id,null)).then((res) => {
-        if (res.status == 200) {
+        if (res.status === 200) {
           if (res.data !== null) {
             setaccessList(res.data);
           } else {
@@ -155,8 +155,7 @@ const AccessPanel = () => {
           "Failed To Modified Accesses",
           "warning"
         );
-        console.log(e);
-      }
+       }
     }
   };
   return (

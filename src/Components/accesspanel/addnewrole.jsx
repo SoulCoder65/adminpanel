@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { CustomDialog, useDialog } from "react-st-modal";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
@@ -9,11 +9,9 @@ import {
 import validator from "validator";
 
  import { createNewRole } from "../../actions/auth";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import Swal from "sweetalert2";
 
-//getting category action
-// import { fetchAllCategory, addCategory } from "../../../actions/category";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -63,10 +61,9 @@ const AddnewRole = ({updatesRoles}) => {
           roleError: false,
         });
 
-        console.log(role_name);
         dispatch(createNewRole(role_name)).then((res) => {
           try {
-            if (res.status == 200) {
+            if (res.status === 200) {
                 updatesRoles()
               Swal.fire(
                 "Success",
@@ -74,7 +71,7 @@ const AddnewRole = ({updatesRoles}) => {
                 "success"
               );
               dialog.close(value);
-            } else if (res.status == 400) {
+            } else if (res.status === 400) {
               Swal.fire("Failed", `${res.data.msg}`, "warning");
             }
           } catch (error) {

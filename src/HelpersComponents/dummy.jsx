@@ -3,7 +3,6 @@ import { makeStyles } from "@material-ui/core/styles";
 import Card from "@material-ui/core/Card";
 import CardActions from "@material-ui/core/CardActions";
 import CardContent from "@material-ui/core/CardContent";
-import Button from "@material-ui/core/Button";
 import Typography from "@material-ui/core/Typography";
 import Grid from "@material-ui/core/Grid";
 import Box from "@material-ui/core/Box";
@@ -39,7 +38,6 @@ const useStyles = makeStyles({
 
 const CardModel = ({ data }) => {
   const classes = useStyles();
-  const bull = <span className={classes.bullet}>•</span>;
 
   return (
     <Grid item xs={12} sm={6} lg={4}>
@@ -54,12 +52,12 @@ const CardModel = ({ data }) => {
           <CardContent>
             <Grid container spacing={3} alignItems="center">
               <Grid item xs={6}>
-                {data.name == "Businesses" ? (
+                {data.name === "Businesses" ? (
                   <BusinessCenterOutlinedIcon
                     className={classes.icon}
                     style={{ color: data.color }}
                   />
-                ) : data.name == "Users" ? (
+                ) : data.name === "Users" ? (
                   <GroupOutlinedIcon
                     className={classes.icon}
                     style={{ color: data.color }}

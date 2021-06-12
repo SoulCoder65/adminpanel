@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import EmailIcon from "@material-ui/icons/Email";
 import {NavLink} from "react-router-dom"
@@ -58,7 +54,6 @@ const VerifyEmailPage = (props) => {
   const [errormsg, setErrormsg] = useState("");
   const [showAlert, setShowAlert] = useState(null);
 
-  const errorcheck = "Authentication failed,Admin Account Not found";
   // check if user already login if true direct to home
   let auth = useSelector((state) => state.auth);
 
@@ -70,14 +65,13 @@ const VerifyEmailPage = (props) => {
       email,
     };
     dispatch(verifyEmail(emailData)).then((res)=>{
-      if(res=="network")
+      if(res==="network")
       {
         setShowAlert(true)
         setErrormsg("Something Went Wrong!! Maybe Server Issue.")
       }
       else{
-        console.log(res);
-        if (res.status == 400 ||res.status == 403 ) {
+        if (res.status === 400 ||res.status === 403 ) {
           setShowAlert(true)
           setErrormsg(res.data.message?res.data.message:res.data.msg);
         } else {
@@ -93,7 +87,7 @@ const VerifyEmailPage = (props) => {
   if (auth.authenticate) {
     return <Redirect to={"/"} />;
   }
-  if (auth.message == "email exists") {
+  if (auth.message === "email exists") {
     return (
       <Redirect
         to={{

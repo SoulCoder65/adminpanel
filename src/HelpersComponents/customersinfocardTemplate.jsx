@@ -88,7 +88,7 @@ const InfoCard = (props) => {
                 src={profilepic}
                 className={classes.image}
               >
-                {fullname[0]}
+                {fullname[0]!=null?fullname[0]:"NA"}
               </Avatar>
             </ButtonBase>
           </Grid>

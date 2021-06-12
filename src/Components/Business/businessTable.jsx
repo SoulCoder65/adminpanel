@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from "react";
-import PeopleOutlineTwoToneIcon from "@material-ui/icons/PeopleOutlineTwoTone";
-import IconButton from "@material-ui/core/IconButton";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 import { Search } from "@material-ui/icons";
-import DeleteIcon from "@material-ui/icons/Delete";
 import TableTemplate from "../../HelpersComponents/TableTemplate";
-import Controls from "../../HelpersComponents/Input";
 import {
   TextField,
   Grid,
@@ -62,7 +58,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const BusinessTable = ({ data }) => {
-  const deletestatus = useSelector((state) => state.businessdelete);
+  // const deletestatus = useSelector((state) => state.businessdelete);
   const dispatch = useDispatch(getBusinessListData());
   const checkAccess = useSelector((state) => state.getspecificrole);
 
@@ -93,7 +89,7 @@ const BusinessTable = ({ data }) => {
     }).then((res) => {
       if (res.value) {
         dispatch(removeBusinessAccount(_id, !isInactive)).then((dt) => {
-          if (dt.data == "success") {
+          if (dt.data === "success") {
             dispatch(getBusinessListData());
             Swal.fire(
               isInactive ? "Activate!!" : "InActivate!!",
@@ -132,7 +128,7 @@ const BusinessTable = ({ data }) => {
     }).then((res) => {
       if (res.value) {
         dispatch(blockUnblock(_id, !isBlock)).then((dt) => {
-          if (dt.data == "success") {
+          if (dt.data === "success") {
             dispatch(getBusinessListData());
             Swal.fire(
               isBlock ? "Unblock!!" : "Block!!",
@@ -173,25 +169,25 @@ const BusinessTable = ({ data }) => {
     let target = e.target;
     setFilterFn({
       fn: (items) => {
-        if (target.value == "") return items;
+        if (target.value === "") return items;
         else
           return items.filter((x) => {
-            if (searchBy == "businessname") {
+            if (searchBy === "businessname") {
               return x.businessname
                 .toString()
                 .toLowerCase()
                 .includes(target.value.toString().toLowerCase());
-            } else if (searchBy == "contactpersonname") {
+            } else if (searchBy === "contactpersonname") {
               return x.contactpersonname
                 .toString()
                 .toLowerCase()
                 .includes(target.value.toString().toLowerCase());
-            } else if (searchBy == "phone") {
+            } else if (searchBy === "phone") {
               return x.phone
                 .toString()
                 .toLowerCase()
                 .includes(target.value.toString().toLowerCase());
-            } else if (searchBy == "category") {
+            } else if (searchBy === "category") {
               if (x.category !== undefined) {
                 return x.category
                   .toString()
@@ -199,7 +195,7 @@ const BusinessTable = ({ data }) => {
                   .includes(target.value.toString().toLowerCase());
               } else {
               }
-            } else if (searchBy == "state") {
+            } else if (searchBy === "state") {
               if (x.state !== undefined) {
                 return x.state
                   .toString()
@@ -207,7 +203,7 @@ const BusinessTable = ({ data }) => {
                   .includes(target.value.toString().toLowerCase());
               } else {
               }
-            } else if (searchBy == "city") {
+            } else if (searchBy === "city") {
               if (x.city !== undefined) {
                 return x.city
                   .toString()
@@ -260,8 +256,8 @@ const BusinessTable = ({ data }) => {
                   setSearchBy(e.target.value);
                 }}
               >
-                <MenuItem value={"businessname"}>Business Name</MenuItem>
-                <MenuItem value={"contactpersonname"}>Contact Person </MenuItem>
+                <MenuItem value={"businessname"}>Business</MenuItem>
+                <MenuItem value={"contactpersonname"}>Name </MenuItem>
                 <MenuItem value={"phone"}>Mobile Number</MenuItem>
                 <MenuItem value={"category"}>category</MenuItem>
                 <MenuItem value={"city"}>City</MenuItem>
@@ -304,7 +300,7 @@ const BusinessTable = ({ data }) => {
                           size="small"
                           variant="contained"
                           color="primary"
-                          style={{ marginRight: "4px",width:"10px" }}
+                          style={{ marginRight: "4px" }}
                           onClick={() => {
                             showBlockUnblockAlert(
                               item.businessname,

@@ -66,7 +66,6 @@ const InfoCard = (props) => {
   } = props.props.data;
   const { dialog } = props;
   const classes = useStyles();
-  console.log(dialog);
   const [selectedValue, setSelectedValue] = React.useState(status);
 
   const submitRequest = () => {
@@ -90,7 +89,7 @@ const InfoCard = (props) => {
                 src={profilepic}
                 className={classes.image}
               >
-                {businessname[0]}
+                {businessname[0]!==null?businessname[0]:"NA"}
               </Avatar>
             </ButtonBase>
           </Grid>

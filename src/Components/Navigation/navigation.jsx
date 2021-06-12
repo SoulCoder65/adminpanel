@@ -15,8 +15,6 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import ListItem from "@material-ui/core/ListItem";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
 import ListItemText from "@material-ui/core/ListItemText";
-import InboxIcon from "@material-ui/icons/MoveToInbox";
-import MailIcon from "@material-ui/icons/Mail";
 import Button from "@material-ui/core/Button";
 
 //icons
@@ -28,10 +26,9 @@ import LiveHelpIcon from '@material-ui/icons/LiveHelp';
 import SupervisedUserCircleIcon from '@material-ui/icons/SupervisedUserCircle';
 //for navigation
 import { useHistory } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import {  useDispatch } from "react-redux";
 import { logout } from "../../actions/auth";
 import Hidden from '@material-ui/core/Hidden';
-import withWidth from '@material-ui/core/withWidth';
 
 const drawerWidth = 240;
 
@@ -101,7 +98,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Header(props) {
-  const auth = useSelector((state) => state.auth);
   const dispatch = useDispatch();
   const classes = useStyles();
   const theme = useTheme();
@@ -111,16 +107,16 @@ export default function Header(props) {
   let history = useHistory();
 
   const changePage = (name) => {
-    if (name == "Home") {
+    if (name === "Home") {
       history.push("/");
-    } else if (name == "Business") {
+    } else if (name === "Business") {
       history.push("/business");
-    } else if (name == "Users") {
+    } else if (name === "Users") {
       history.push("/users");
-    } else if ((name == "Queries")) {
+    } else if ((name === "Queries")) {
       history.push("/queries");
     }
-    else if((name =="Access")){
+    else if((name ==="Access")){
       history.push("/accesspanel")
     }
     
@@ -131,7 +127,6 @@ export default function Header(props) {
     
   };
   const manageBack=()=>{
-    console.log(history);
     window.history.back()
   }
 

@@ -8,7 +8,7 @@ export const getBusinessQueries = (date) => {
       const res = await axios.post("/adminpanel/getbusinessqueriesdaywise", {
         date,
       });
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: businessQueriesStatic.BUSINESS_QUERIES_STATIC_SUCCESS,
           payload: {
@@ -44,7 +44,7 @@ export const updateBusinessQuery = (_id,status) => {
         _id,
         status
       });
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: updateBusinessQueriesStatic.UPDATE_BUSINESS_QUERIES_STATIC_SUCCESS,
           payload: {
@@ -81,7 +81,7 @@ export const getUsersQueries = (date) => {
       const res = await axios.post("/adminpanel/getusersqueriesdaywise", {
         date,
       });
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: usersQueriesStatic.USER_QUERIES_STATIC_SUCCESS,
           payload: {
@@ -118,7 +118,7 @@ export const updateUserQuery = (_id,status) => {
         _id,
         status
       });
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: updateUsersQueriesStatic.UPDATE_USER_QUERIES_STATIC_SUCCESS,
           payload: {

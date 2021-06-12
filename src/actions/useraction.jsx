@@ -6,7 +6,6 @@ import {
   daywiseConstants,
 } from "./static";
 import axios from "../helpers/axios";
-import axiosObject from "../helpers/axios";
 
 export const getUserData = (check) => {
   var res;
@@ -14,16 +13,16 @@ export const getUserData = (check) => {
   return async (dispatch) => {
     dispatch({ type: userStatic.USER_FETCH_MONTH_DATA_REQUEST });
     try {
-      if (check == "year") {
+      if (check === "year") {
         res = await axios.get("/adminpanel/getusersstatsmonthwise");
-      } else if (check == "month") {
+      } else if (check === "month") {
         res = await axios.get("/adminpanel/getusersstatscurrentmonth");
-      } else if (check == "sevendays") {
+      } else if (check === "sevendays") {
         res = await axios.get("/adminpanel/getusersstatsdaywise");
-      } else if (check == "lst24hrs") {
+      } else if (check === "lst24hrs") {
         res = await axios.get("/adminpanel/getusersstatslst24hrs");
       }
-      if (res.status == 200) {
+      if (res.status === 200) {
         const data = res.data;
         dispatch({
           type: userStatic.USER_FETCH_MONTH_DATA_SUCCESS,
@@ -65,7 +64,7 @@ export const getUsersListData = () => {
     dispatch({ type: userListStatic.USER_DATA_REQUEST });
     try {
       const res = await axios.get("/adminpanel/getuserslist");
-      if (res.status == 200) {
+      if (res.status === 200) {
         const data = res.data;
         dispatch({
           type: userListStatic.USER_DATA_SUCCESS,
@@ -111,7 +110,7 @@ export const removeUserAccount = (_id, isInactive) => {
         _id: _id,
         isInactive: isInactive,
       });
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: deleteUserStatic.DELETE_USERS_SUCCESS,
           payload: {
@@ -165,7 +164,7 @@ export const blockUnblockUser = (_id, isBlock) => {
         _id,
         isBlock,
       });
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: blockUnblockUserStatic.BLOCK_UNBLOCK_USERS_SUCCESS,
           payload: {
@@ -209,11 +208,10 @@ export const daywiseData = (date) => {
       type: daywiseConstants.DAY_WISE_STATIC_REQUEST,
     });
     try {
-      console.log("date ge", date);
       const res = await axios.post("/adminpanel/getlistoftokensdaywise", {
         date,
       });
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: daywiseConstants.DAY_WISE_STATIC_SUCCESS,
           payload: {

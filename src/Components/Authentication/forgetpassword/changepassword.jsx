@@ -1,13 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
-import Link from "@material-ui/core/Link";
 import Paper from "@material-ui/core/Paper";
-import Box from "@material-ui/core/Box";
 import Grid from "@material-ui/core/Grid";
 import VpnLockIcon from "@material-ui/icons/VpnLock";
 import Typography from "@material-ui/core/Typography";
@@ -70,7 +66,7 @@ const ChangePasswordPage = (props) => {
       email: userEmail,
     };
 
-    if (password.length == 0) {
+    if (password.length === 0) {
       setErrormsg("Password Field Can't Be Empty!!");
       setShowAlert(true)
   
@@ -80,14 +76,13 @@ const ChangePasswordPage = (props) => {
   
     } else {
        dispatch(changePassword(data)).then((res)=>{
-        if(res=="network")
+        if(res==="network")
         {
           setShowAlert(true)
           setErrormsg("Something Went Wrong!! Maybe Server Issue.")
         }
         else{
-          if (res.status == 400 ||res.status == 403 ) {
-            console.log(res);
+          if (res.status === 400 ||res.status === 403 ) {
             setShowAlert(true)
             setErrormsg(res.data.message?res.data.message:res.data.msg);
           } else {
@@ -104,7 +99,7 @@ const ChangePasswordPage = (props) => {
   // if (auth.authenticate) {
   //   return <Redirect to={"/"} />;
   // }
-  if (auth.message == "Password Update Successfully") {
+  if (auth.message === "Password Update Successfully") {
     return <Redirect to={"/signin"} />;
   }
 
@@ -145,7 +140,6 @@ const ChangePasswordPage = (props) => {
                 margin="normal"
                 required
                 fullWidth
-                required
                 name="password"
                 label="Password"
                 value={password}

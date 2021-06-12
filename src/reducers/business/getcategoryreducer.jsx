@@ -26,7 +26,8 @@ export default (state=initialState,action)=>{
                 ...state,
                 loading:false,
                 error:action.payload.data
-            }
+            };
+            break;
         default:
             break;
     }

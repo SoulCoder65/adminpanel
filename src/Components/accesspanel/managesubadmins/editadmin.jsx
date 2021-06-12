@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, {  useState } from "react";
 import { CustomDialog, useDialog } from "react-st-modal";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
@@ -120,11 +120,11 @@ const UpdateSubAdmin = ({ data,updateFun }) => {
 
         dispatch(editSubAdmins(values)).then((res) => {
           try {
-            if (res.status == 200) {
+            if (res.status === 200) {
               updateFun()
               Swal.fire("Success", `Account Updated Successfully`, "success");
               dialog.close(value);
-            } else if (res.status == 400) {
+            } else if (res.status === 400) {
               Swal.fire("Failed", `${res.data.msg}`, "warning");
             }
           } catch (error) {
@@ -155,7 +155,7 @@ const UpdateSubAdmin = ({ data,updateFun }) => {
               onChange={handleChange("role")}
             >
               <MenuItem value="">Select Role</MenuItem>;
-              {allroles !== null && allroles != undefined
+              {allroles !== null && allroles !== undefined
                 ? allroles.data.map((dt) => {
                     return (
                       <MenuItem value={dt.role_name}>{dt.role_name}</MenuItem>

@@ -1,48 +1,46 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import FusionCharts from "fusioncharts";
 import charts from "fusioncharts/fusioncharts.charts";
 import ReactFusioncharts from "react-fusioncharts";
 import CandyTheme from "fusioncharts/themes/fusioncharts.theme.candy";
 import ReactFC from "react-fusioncharts";
-import { makeStyles } from "@material-ui/core/styles";
 
-const useStyles = makeStyles((theme) => ({
-  root: {
-    marginTop: theme.spacing(3),
-    padding: theme.spacing(2),
-    maxHeight: "340",
-    width: "90vw",
-    // margin:"auto"
-    [theme.breakpoints.down("md")]: {
-      width: "80vw",
-    },
-  },
-}));
+// const useStyles = makeStyles((theme) => ({
+//   root: {
+//     marginTop: theme.spacing(3),
+//     padding: theme.spacing(2),
+//     maxHeight: "340",
+//     width: "90vw",
+//     // margin:"auto"
+//     [theme.breakpoints.down("md")]: {
+//       width: "80vw",
+//     },
+//   },
+// }));
 
 charts(FusionCharts);
 ReactFC.fcRoot(FusionCharts, CandyTheme);
 
 const Businessstats = ({ business, check }) => {
-  console.log(check);
   const labels = [];
   const dataValues = [];
   try {
-    if (business.data[0] != undefined) {
-      if (check == "sevendays") {
+    if (business.data[0] !== undefined) {
+      if (check === "sevendays") {
         Object.keys(business.data[0].sevendays).map((data, index) => {
           labels.push({ label: data });
         });
         Object.values(business.data[0].sevendays).map((data, index) => {
           dataValues.push({ value: data });
         });
-      } else if (check == "month") {
+      } else if (check === "month") {
         Object.keys(business.data[0].currstats).map((data, index) => {
           labels.push({ label: data });
         });
         Object.values(business.data[0].currstats).map((data, index) => {
           dataValues.push({ value: data });
         });
-      } else if (check == "lst24hrs") {
+      } else if (check === "lst24hrs") {
         Object.keys(business.data[0].last24hrs).map((data, index) => {
           labels.push({ label: data });
         });
@@ -59,8 +57,7 @@ const Businessstats = ({ business, check }) => {
       }
     }
   } catch (e) {
-    console.log(e);
-  }
+    }
 
   const dataSource = {
     chart: {
@@ -91,9 +88,7 @@ const Businessstats = ({ business, check }) => {
     ],
   };
 
-  // console.log("dispatch ", auth.error);
-  const classes = useStyles();
-
+  
   return (
     <ReactFusioncharts
       type="msline"

@@ -247,7 +247,7 @@ const SubAdmins = ({ data }) => {
                       />
                     )}
                   </StyledTableCell>
-                  <StyledTableCell className={classes.table} align="left">
+                  <StyledTableCell className={classes.table} style={{paddingLeft:"3%"}} align="left">
                     {<EditSubAdmin updateFun={updateData} data={row} />}
                   </StyledTableCell>
                 </StyledTableRow>

@@ -1,11 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Button from "@material-ui/core/Button";
 import ButtonGroup from "@material-ui/core/ButtonGroup";
 
 import { Search } from "@material-ui/icons";
-import DeleteIcon from "@material-ui/icons/Delete";
 import TableTemplate from "../../HelpersComponents/TableTemplate";
-import Controls from "../../HelpersComponents/Input";
 import {
   TextField,
   Grid,
@@ -55,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
 
 
 const UserTable = ({ data }) => {
-  const deletestatus=useSelector((state)=>state.userdelete)
   const checkAccess = useSelector((state) => state.getspecificrole);
  
   const dispatch = useDispatch(getUsersListData());
@@ -82,7 +79,7 @@ const UserTable = ({ data }) => {
       if (res.value) {
         
           dispatch(removeUserAccount(_id,!isInactive)).then((dt)=>{
-           if(dt.data=="success")
+           if(dt.data==="success")
             {
               dispatch(getUsersListData());
               Swal.fire(isInactive?"Activate!!":"InActivate!!",isInactive?`${name} account has been Activated.`:`${name} account has been Inactivated.`, "success");
@@ -102,7 +99,6 @@ const UserTable = ({ data }) => {
 
 // block-unblock toggle
 const showBlockUnblockAlert = (name, _id,isBlock) => {
-  console.log(_id);
   Swal.fire({
     title: "Are you sure?",
     text: isBlock?`This Action Will Unblock ${name} Account`:`This Action Will block ${name} Account`,
@@ -112,11 +108,9 @@ const showBlockUnblockAlert = (name, _id,isBlock) => {
     cancelButtonText: "Cancel",
   }).then((res) => {
     if (res.value) {
-      console.log("block",isBlock);
       
         dispatch(blockUnblockUser(_id,!isBlock)).then((dt)=>{
-          console.log(dt);
-         if(dt.data=="success")
+         if(dt.data==="success")
           {
             dispatch(getUsersListData());
             Swal.fire(isBlock?"Unblock!!":"Block!!",isBlock?`${name} account has been Unblocked.`:`${name} account has been Blocked.`, "success");
@@ -144,7 +138,6 @@ const showBlockUnblockAlert = (name, _id,isBlock) => {
   });
 
   const records = data.data?data.data:[];
-  console.log(records);
   const { TblContainer, TblHead, TblPagination, recordsAfterPagingAndSorting } =
     TableTemplate({ records, headCells, filterFn });
 
@@ -152,25 +145,25 @@ const showBlockUnblockAlert = (name, _id,isBlock) => {
     let target = e.target;
     setFilterFn({
       fn: (items) => {
-        if (target.value == "") return items;
+        if (target.value === "") return items;
         else
           return items.filter((x) => {
-            if (searchBy == "firstname") {
+            if (searchBy === "firstname") {
               return x.firstname
                 .toString()
                 .toLowerCase()
                 .includes(target.value.toString().toLowerCase());
-            } else if (searchBy == "lastname") {
+            } else if (searchBy === "lastname") {
               return x.lastname
                 .toString()
                 .toLowerCase()
                 .includes(target.value.toString().toLowerCase());
-            } else if (searchBy == "phone") {
+            } else if (searchBy === "phone") {
               return x.phone
                 .toString()
                 .toLowerCase()
                 .includes(target.value.toString().toLowerCase());
-            } else if (searchBy == "email") {
+            } else if (searchBy === "email") {
               if (x.email !== undefined) {
                 return x.email
                   .toString()
@@ -178,7 +171,7 @@ const showBlockUnblockAlert = (name, _id,isBlock) => {
                   .includes(target.value.toString().toLowerCase());
               } else {
               }
-            } else if (searchBy == "state") {
+            } else if (searchBy === "state") {
               if (x.state !== undefined) {
                 return x.state
                   .toString()
@@ -186,7 +179,7 @@ const showBlockUnblockAlert = (name, _id,isBlock) => {
                   .includes(target.value.toString().toLowerCase());
               } else {
               }
-            } else if (searchBy == "city") {
+            } else if (searchBy === "city") {
               if (x.city !== undefined) {
                 return x.city
                   .toString()
@@ -269,7 +262,6 @@ const showBlockUnblockAlert = (name, _id,isBlock) => {
                         color="primary"
                         style={{ marginRight: "4px" }}
                         onClick={()=>{
-                          console.log(item)
                           showBlockUnblockAlert(`${item.firstname} ${item.lastname}`,item._id,item.isBlock)
                         }}
                       >

@@ -17,6 +17,7 @@ import UsersStats from "../Charts/usersstats";
 import TitleTemplate from "../../HelpersComponents/TitleTemplate";
 import UserImage from "../../utils/images/customerqueue.jpg";
 import BusinessImage from "../../utils/images/business.jpg";
+import QueryImage from "../../utils/images/query.jpg";
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -66,7 +67,6 @@ const Home = () => {
 
   const handlechange = (e) => {
     setsearchKey(e.target.value);
-      console.log(e.target.value);
     dispatch(getBusinessData(e.target.value))
   };
   const handleCustomerschange=(e)=>{
@@ -109,7 +109,7 @@ const Home = () => {
               title="Manage Queries"
               tag="Queries"
               iconName="fas fa-ellipsis-v"
-              bgPhoto="https://picsum.photos/id/134/200/300"
+              bgPhoto={QueryImage}
               cta="View"
               direct="queries"
             />

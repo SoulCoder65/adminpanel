@@ -10,7 +10,6 @@ import {
   categoryStatsStatic,
 } from "./static";
 import axios from "../helpers/axios";
-import axiosObject from "../helpers/axios";
 
 export const getBusinessData = (check) => {
   var res;
@@ -18,26 +17,24 @@ export const getBusinessData = (check) => {
    
     dispatch({ type: businessStatic.BUSINESS_FETCH_MONTH_DATA_REQUEST });
     try {
-      console.log(check);
-      if(check=="year")
+      if(check==="year")
       {
          res = await axios.get("/adminpanel/getbusinessstatsmonthwise");
           
       }
-      else if(check=="month")
+      else if(check==="month")
       {
          res = await axios.get("/adminpanel/getbusinessstatscurrentmonth");
       }
-      else if(check=="sevendays")
+      else if(check==="sevendays")
       {
         res = await axios.get("/adminpanel/getbusinessstatsdaywise");
       }
-      else if(check=="lst24hrs")
+      else if(check==="lst24hrs")
       {
        res = await axios.get("/adminpanel/getbusinessstatslst24hrs");
       }
-      console.log(res);
-      if (res.status == 200) {
+      if (res.status === 200) {
         const data = res.data;
         dispatch({
           type: businessStatic.BUSINESS_FETCH_MONTH_DATA_SUCCESS,
@@ -78,7 +75,7 @@ export const getBusinessListData = () => {
     dispatch({ type: businessListStatic.BUSINESS_DATA_REQUEST });
     try {
       const res = await axios.get("/adminpanel/getbusinesslist");
-      if (res.status == 200) {
+      if (res.status === 200) {
         const data = res.data;
         dispatch({
           type: businessListStatic.BUSINESS_DATA_SUCCESS,
@@ -128,7 +125,7 @@ export const removeBusinessAccount = (_id,isInactive) => {
         isInactive:isInactive
         
       });
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: deleteBusinessStatic.DELETE_BUSINESS_USERS_SUCCESS,
           payload: {
@@ -173,7 +170,7 @@ export const blockUnblock = (_id, isBlock) => {
         _id,
         isBlock,
       });
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: blockUnblockBusinessStatic.BLOCK_UNBLOCK_BUSINESS_USERS_SUCCESS,
           payload: {
@@ -226,7 +223,7 @@ export const getAllCategories = () => {
     dispatch({ type: getAllCategoryStatic.GET_ALL_CATEGORIES_STATIC_REQUEST });
     try {
       const res = await axios.get("/adminpanel/getbusinesscategory");
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: getAllCategoryStatic.GET_ALL_CATEGORIES_STATIC_SUCCESS,
           payload: {
@@ -279,7 +276,7 @@ export const deletecategory = (_id,isActive) => {
         _id,
         isActive
       });
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: deleteCategoryStatic.DELETE_CATEGORY_STATIC_SUCCESS,
           payload: {
@@ -332,7 +329,7 @@ export const updatecategory = (_id, categoryname) => {
         _id,
         categoryname,
       });
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: updateCategoryStatic.UPDATE_CATEGORY_STATIC_SUCCESS,
           payload: {
@@ -382,7 +379,7 @@ export const createcategory = (category_name) => {
       const res = await axios.post("/adminpanel/createbusinesscategory", {
         category_name,
       });
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: createCategoryStatic.CREATE_CATEGORY_STATIC_SUCCESS,
           payload: {
@@ -422,10 +419,7 @@ export const createcategory = (category_name) => {
       }
 
       }
-    dispatch({
-      type: createCategoryStatic.CREATE_CATEGORY_STATIC_REQUEST,
-    });
-  };
+    };
 };
 
 //<-------------------Create Category END------------------------->
@@ -436,7 +430,7 @@ export const getcategoryStats = () => {
     dispatch({ type: categoryStatsStatic.CATEGORY_STATS_STATIC_REQUEST });
     try {
       const res = await axios.get("/adminpanel/getbusinesscategoriesstats");
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: categoryStatsStatic.CATEGORY_STATS_STATIC_SUCCESS,
           payload: {

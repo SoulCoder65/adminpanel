@@ -1,7 +1,7 @@
 import React from "react";
 import { Paper, Divider, Grid, Button } from "@material-ui/core";
 import SecurityIcon from "@material-ui/icons/Security";
-import { Redirect, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles((theme) => ({
   title: {
@@ -35,7 +35,7 @@ const TitleTemplate = ({ title }) => {
           <Grid item xs={7} md={10}>
             <h1 className={classes.title}>{title}</h1>
           </Grid>
-          {JSON.parse(token).isSuperAdmin ? (
+          {JSON.parse(token)!==null?(JSON.parse(token).isSuperAdmin ? (
             title !== "ACCESS PANEL" ? (
               <Grid item xs={5} md={2} style={{width:"100%"}}>
                 <NavLink to="/accesspanel" style={{textDecoration:"none"}}>
@@ -50,7 +50,7 @@ const TitleTemplate = ({ title }) => {
                 </NavLink>
               </Grid>
             ) : null
-          ) : null}
+          ) : null):null}
         </Grid>
       </Paper>
       <Divider />

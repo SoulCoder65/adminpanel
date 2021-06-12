@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-import ReactDOM from "react-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import Table from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
@@ -14,7 +13,6 @@ import {
   InputLabel,
   FormHelperText,
 } from "@material-ui/core";
-import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 
 import Paper from "@material-ui/core/Paper";
@@ -22,7 +20,6 @@ import IconButton from "@material-ui/core/IconButton";
 // Icons
 import EditIcon from "@material-ui/icons/EditOutlined";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
-import { CallMergeTwoTone, DeleteOutline } from "@material-ui/icons";
 import BackupIcon from "@material-ui/icons/Backup";
 import Alert from "@material-ui/lab/Alert";
 
@@ -118,7 +115,6 @@ const CategoryTable = ({ category }) => {
   const [newvalue, setnewValue] = React.useState("");
   const [showAlert, setShowAlert] = useState(null);
   const checkAccess = useSelector((state) => state.getspecificrole);
-  console.log(checkAccess.categoryedit);
   const classes = useStyles();
 
   useEffect(() => {
@@ -126,18 +122,13 @@ const CategoryTable = ({ category }) => {
   }, [category]);
 
   const onToggleEditMode = (e, _id, check = false, name = "") => {
-    if (check == true && newvalue !== "") {
-      console.log(newvalue);
-      console.log(_id);
+    if (check === true && newvalue !== "") {
       dispatch(updatecategory(_id, newvalue)).then((dt) => {
-        console.log(dt);
       });
     }
     setRows((state) => {
       return rows.map((row) => {
         if (row._id === _id) {
-          console.log(row.category_name);
-          console.log();
           if (!row.category_name == "") {
             return { ...row, isEditMode: !row.isEditMode };
           } else {
@@ -172,7 +163,6 @@ const CategoryTable = ({ category }) => {
   };
 
   const onDelete = (_id, isActive, name) => {
-    console.log(isActive);
     Swal.fire({
       title: "Are you sure?",
       text: isActive
@@ -252,10 +242,8 @@ const CategoryTable = ({ category }) => {
             component="span"
             startIcon={<BackupIcon />}
             onClick={() => {
-              console.log(categoryname);
               if (!categoryname == "") {
                 dispatch(createcategory(categoryname)).then((res) => {
-                  console.log(res);
                   if (res.data.msg) {
                     setError(true);
                     setErrormsg(res.data.msg);

@@ -1,16 +1,13 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TableTemplate from "../../../HelpersComponents/TableTemplate";
 import moment from "moment/moment.js";
 
 import {
   Grid,
-  MenuItem,
-  InputLabel,
-  Select,
   Typography,
 } from "@material-ui/core";
 import { daywiseData } from "../../../actions/useraction";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 import {
   Paper,
@@ -24,7 +21,6 @@ import "date-fns";
 import DateFnsUtils from "@date-io/date-fns";
 import {
   MuiPickersUtilsProvider,
-  KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
 
@@ -79,7 +75,6 @@ const DayWiseTable = ({ data }) => {
       return items;
     },
   });
-  console.log(data);
   if (data) {
     data.map((dt) => {
       dt.usersList.map((rs) => {
@@ -90,13 +85,10 @@ const DayWiseTable = ({ data }) => {
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    console.log(moment(date).format("ddd MMM DD YYYY").toString());
     dispatch(daywiseData(moment(date).format("ddd MMM DD YYYY").toString()));
   };
 
-  console.log(records);
-
-  // console.log(records);
+  
   const { TblContainer, TblHead, TblPagination, recordsAfterPagingAndSorting } =
     TableTemplate({ records, headCells, filterFn });
 

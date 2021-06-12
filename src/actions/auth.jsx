@@ -1,6 +1,5 @@
 import { authStatic } from "./static";
 import axios from "../helpers/axios";
-import axiosObject from "../helpers/axios";
 
 export const signup=(user)=>{
   return async (dispatch)=>{
@@ -9,7 +8,7 @@ export const signup=(user)=>{
       const res=await axios.post("/adminpanel/adminsignup",{
         ...user
       });
-      if(res.status==200)
+      if(res.status===200)
       {
         dispatch({
           type:authStatic.SIGNUP_SUCCESS,
@@ -53,8 +52,7 @@ export const login = (user) => {
       });
 
       //checking status
-      if (res.status == 200) {
-        console.log(res.status);
+      if (res.status === 200) {
         const { token, admin } = res.data;
         const user=admin;
         localStorage.setItem("token", token);
@@ -67,7 +65,7 @@ export const login = (user) => {
           },
         });
       } else {
-        if (res.status == 400 || res.status == 403) {
+        if (res.status === 400 || res.status === 403) {
           dispatch({
             type: authStatic.LOGIN_FAILURE,
             payload: {
@@ -96,12 +94,6 @@ export const login = (user) => {
       return "network";
     }
 
-    dispatch({
-      type: authStatic.LOGIN_REQUEST,
-      payload: {
-        ...user,
-      },
-    });
   };
 };
 
@@ -112,7 +104,6 @@ export const isUserLogin = () => {
     const token = window.localStorage.getItem("token");
     if (token) {
       const user = JSON.parse(localStorage.getItem("user"));
-      console.log(user);
       dispatch({
         type: authStatic.LOGIN_SUCCESS,
         payload: {
@@ -137,7 +128,7 @@ export const logout = () => {
     });
     //calling signout api
     const res = await axios.post("/adminpanel/adminsignout");
-    if (res.status == 201 || res.status == 200) {
+    if (res.status === 201 || res.status === 200) {
       localStorage.clear();
       dispatch({
         type: authStatic.LOGOUT_SUCCESS,
@@ -162,7 +153,7 @@ export const verifyEmail = (email) => {
         ...email,
       });
 
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: authStatic.EMAIL_VERIFICATION_SUCCESS,
           payload: {
@@ -171,7 +162,7 @@ export const verifyEmail = (email) => {
           },
         });
       } else {
-        if (res.status == 400 || res.status == 403) {
+        if (res.status === 400 || res.status === 403) {
           dispatch({
             type: authStatic.EMAIL_VERIFICATION_FAILURE,
             payload: {
@@ -199,12 +190,7 @@ export const verifyEmail = (email) => {
       });
       return "network";
     }
-    dispatch({
-      type: authStatic.EMAIL_VERIFICATION_REQUEST,
-      payload: {
-        ...email,
-      },
-    });
+  
   };
 };
 
@@ -221,7 +207,7 @@ export const changePassword = (data) => {
         ...data,
       });
 
-      if (res.status == 200) {
+      if (res.status === 200) {
         dispatch({
           type: authStatic.CHANGE_PASSWORD_SUCCESS,
           payload: {
@@ -230,7 +216,7 @@ export const changePassword = (data) => {
           },
         });
       } else {
-        if (res.status == 400 || res.status == 403) {
+        if (res.status === 400 || res.status === 403) {
           dispatch({
             type: authStatic.CHANGE_PASSWORD_FAILURE,
             payload: {
@@ -273,7 +259,7 @@ export const getAllSubAdmins=()=>{
     });
     try {
       const res=await axios.get("/adminpanel/getalladmins");
-      if(res.status==200)
+      if(res.status===200)
       {
         dispatch({
           type:authStatic.GET_ALL_ADMINS_SUCCESS,
@@ -323,7 +309,6 @@ export const getAllSubAdmins=()=>{
 // <-------------------Edit SubAdmins----------------------->
 // <--------------------GET ALL SUBADMINS--------------->
 export const editSubAdmins=(data)=>{
-  console.log(data)
   return async (dispatch)=>{
     dispatch({
       type:authStatic.EDIT_ADMIN_REQUEST,
@@ -332,7 +317,7 @@ export const editSubAdmins=(data)=>{
       const res=await axios.post("/adminpanel/updateadminprofile",{
         ...data
       });
-      if(res.status==200)
+      if(res.status===200)
       {
         dispatch({
           type:authStatic.EDIT_ADMIN_SUCCESS,
@@ -388,7 +373,7 @@ export const getAllRoles=()=>{
     });
     try {
       const res=await axios.get("/adminpanel/getallroles");
-      if(res.status==200)
+      if(res.status===200)
       {
         dispatch({
           type:authStatic.GET_ALL_ROLES_SUCCESS,
@@ -439,7 +424,6 @@ export const getAllRoles=()=>{
 // <------------------Create New Role---------------------------->
 
 export const createNewRole=(role_name)=>{
-  console.log(role_name)
   return async (dispatch)=>{
     dispatch({
       type:authStatic.CREATE_NEW_ROLE_REQUEST,
@@ -448,7 +432,7 @@ export const createNewRole=(role_name)=>{
       const res=await axios.post("/adminpanel/createnewrole",{
         role_name:role_name
       });
-      if(res.status==200)
+      if(res.status===200)
       {
         dispatch({
           type:authStatic.CREATE_NEW_ROLE_SUCCESS,
@@ -499,7 +483,6 @@ export const createNewRole=(role_name)=>{
 
 // <------------------Edit admins access--------------------------->
 export const editaccess=(_id,access)=>{
-  console.log(_id)
   return async (dispatch)=>{
     dispatch({
       type:authStatic.EDIT_ACCESS_REQUEST,
@@ -509,7 +492,7 @@ export const editaccess=(_id,access)=>{
         _id:_id,
         access:access
       });
-      if(res.status==200)
+      if(res.status===200)
       {
         dispatch({
           type:authStatic.EDIT_ACCESS_SUCCESS,
@@ -558,7 +541,6 @@ export const editaccess=(_id,access)=>{
 
 // <------------------access Specific role --------------------------->
 export const accessspecificrole=(_id,role_name)=>{
-  console.log(_id)
   return async (dispatch)=>{
     dispatch({
       type:authStatic.GET_SPECIFIC_ROLE_REQUEST,
@@ -569,7 +551,7 @@ export const accessspecificrole=(_id,role_name)=>{
         role_name:role_name!==undefined?role_name:""
       
       });
-      if(res.status==200)
+      if(res.status===200)
       {
         dispatch({
           type:authStatic.GET_SPECIFIC_ROLE_SUCCESS,

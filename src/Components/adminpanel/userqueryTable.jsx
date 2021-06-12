@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import TableTemplate from "../../HelpersComponents/TableTemplate";
 import moment from "moment/moment.js";
 import Avatar from "@material-ui/core/Avatar";
@@ -8,9 +8,6 @@ import { CustomDialog, useDialog } from "react-st-modal";
 
 import {
   Grid,
-  MenuItem,
-  InputLabel,
-  Select,
   Typography,
 } from "@material-ui/core";
 import Chip from "@material-ui/core/Chip";
@@ -90,7 +87,6 @@ const UserQueryTable = ({ data }) => {
     },
   });
   if (data.data && data.data.length) {
-    console.log("queue he ", data.data);
     data.data.map((dt) => {
       records.push(dt);
     });
@@ -98,7 +94,6 @@ const UserQueryTable = ({ data }) => {
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    console.log(moment(date).format("ddd MMM DD YYYY").toString());
     dispatch(
       getUsersQueries(moment(date).format("ddd MMM DD YYYY").toString())
     );
@@ -106,8 +101,7 @@ const UserQueryTable = ({ data }) => {
 
   const updateStatus = (_id, status) => {
     dispatch(updateUserQuery(_id, status)).then((val) => {
-      console.log(val);
-      if (val.status == 200) {
+      if (val.status === 200) {
         dispatch(
           getUsersQueries(
             moment(selectedDate).format("ddd MMM DD YYYY").toString()
@@ -122,7 +116,6 @@ const UserQueryTable = ({ data }) => {
 
   // <---------------------SHOW DIALOG----------------------->
   function CustomDialogContent(props) {
-    const classes = useStyles();
     const dialog = useDialog();
 
     return <CustomerInfoCard props={props} dialog={dialog} />;
@@ -186,7 +179,7 @@ const UserQueryTable = ({ data }) => {
                 </TableCell>
                 {/* <TableCell className={classes.table}>{item.date ? item.date : "Not Available"}</TableCell> */}
                 <TableCell className={classes.table}>
-                  {item.status == "Pending" ? (
+                  {item.status === "Pending" ? (
                     <Chip
                       size="medium"
                       label={item.status}
@@ -196,7 +189,7 @@ const UserQueryTable = ({ data }) => {
                         fontWeight: "bold",
                       }}
                     />
-                  ) : item.status == "Solved" ? (
+                  ) : item.status === "Solved" ? (
                     <Chip
                       size="medium"
                       color="white"

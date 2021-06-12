@@ -18,9 +18,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const CategoryStats = ({ stats }) => {
-  // console.log(stats.data);
   const datavalues = [];
-  const temp = {};
   if (stats.data !== undefined) {
     stats.data.map((dt) => {
       if (dt._id !== null) {

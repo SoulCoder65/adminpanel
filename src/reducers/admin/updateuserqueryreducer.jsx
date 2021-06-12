@@ -28,6 +28,8 @@ export default (state = initialState, action) => {
         data: {},
         error: action.payload.data,
       };
+      
+            break;
     default:
       break;
   }

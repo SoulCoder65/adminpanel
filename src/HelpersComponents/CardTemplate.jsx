@@ -2,7 +2,6 @@ import React from "react";
 import PropTypes from "prop-types";
 import styled from "styled-components";
 import Grid from "@material-ui/core/Grid";
-import { Redirect } from "react-router";
 import { NavLink } from "react-router-dom";
 
 const Container = styled.div`
@@ -66,16 +65,6 @@ const Top = styled.div`
   width: 100%;
 `;
 
-const CTA = styled.span`
-  display: block;
-  margin-top: 20px;
-  font-size: 16px;
-  cursor: pointer;
-  font-weight: 500;
-  i {
-    margin-left: 10px;
-  }
-`;
 
 const Card12 = ({
   title,

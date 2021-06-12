@@ -87,7 +87,6 @@ const BusinessQueryTable = ({ data }) => {
     },
   });
   if (data.data && data.data.length) {
-    console.log("queue he ", data.data);
     data.data.map((dt) => {
       records.push(dt);
     });
@@ -95,7 +94,6 @@ const BusinessQueryTable = ({ data }) => {
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    console.log(moment(date).format("ddd MMM DD YYYY").toString());
     dispatch(
       getBusinessQueries(moment(date).format("ddd MMM DD YYYY").toString())
     );
@@ -103,7 +101,7 @@ const BusinessQueryTable = ({ data }) => {
 
   const updateStatus=(_id,status)=>{
     dispatch(updateBusinessQuery(_id,status)).then((val)=>{
-      if(val.status==200)
+      if(val.status===200)
       {
         dispatch(getBusinessQueries(moment(selectedDate).format("ddd MMM DD YYYY").toString()))
       }
@@ -119,7 +117,6 @@ const BusinessQueryTable = ({ data }) => {
   
   // <---------------------SHOW DIALOG----------------------->
   function CustomDialogContent(props) {
-    const classes = useStyles();
     const dialog = useDialog();
     
     
@@ -189,7 +186,7 @@ const BusinessQueryTable = ({ data }) => {
                 </TableCell>
                 {/* <TableCell className={classes.table}>{item.date ? item.date : "Not Available"}</TableCell> */}
                 <TableCell className={classes.table}>
-                  {item.status == "Pending" ? (
+                  {item.status === "Pending" ? (
                     <Chip
                       size="medium"
                       label={item.status}
@@ -199,7 +196,7 @@ const BusinessQueryTable = ({ data }) => {
                         fontWeight: "bold",
                       }}
                     />
-                  ) : item.status == "Solved" ? (
+                  ) : item.status === "Solved" ? (
                     <Chip
                       size="medium"
                       color="white"
