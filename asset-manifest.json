@@ -1,22 +1,23 @@
 {
   "files": {
     "main.css": "/adminpanel/static/css/main.e442034d.chunk.css",
-    "main.js": "/adminpanel/static/js/main.57a1af77.chunk.js",
-    "main.js.map": "/adminpanel/static/js/main.57a1af77.chunk.js.map",
+    "main.js": "/adminpanel/static/js/main.b098cca4.chunk.js",
+    "main.js.map": "/adminpanel/static/js/main.b098cca4.chunk.js.map",
     "runtime-main.js": "/adminpanel/static/js/runtime-main.5947feac.js",
     "runtime-main.js.map": "/adminpanel/static/js/runtime-main.5947feac.js.map",
-    "static/js/2.45282680.chunk.js": "/adminpanel/static/js/2.45282680.chunk.js",
-    "static/js/2.45282680.chunk.js.map": "/adminpanel/static/js/2.45282680.chunk.js.map",
+    "static/js/2.a4218adf.chunk.js": "/adminpanel/static/js/2.a4218adf.chunk.js",
+    "static/js/2.a4218adf.chunk.js.map": "/adminpanel/static/js/2.a4218adf.chunk.js.map",
     "index.html": "/adminpanel/index.html",
     "static/css/main.e442034d.chunk.css.map": "/adminpanel/static/css/main.e442034d.chunk.css.map",
-    "static/js/2.45282680.chunk.js.LICENSE.txt": "/adminpanel/static/js/2.45282680.chunk.js.LICENSE.txt",
+    "static/js/2.a4218adf.chunk.js.LICENSE.txt": "/adminpanel/static/js/2.a4218adf.chunk.js.LICENSE.txt",
     "static/media/business.ecf82875.jpg": "/adminpanel/static/media/business.ecf82875.jpg",
-    "static/media/customerqueue.0dad73ab.jpg": "/adminpanel/static/media/customerqueue.0dad73ab.jpg"
+    "static/media/customerqueue.0dad73ab.jpg": "/adminpanel/static/media/customerqueue.0dad73ab.jpg",
+    "static/media/query.88c89567.jpg": "/adminpanel/static/media/query.88c89567.jpg"
   },
   "entrypoints": [
     "static/js/runtime-main.5947feac.js",
-    "static/js/2.45282680.chunk.js",
+    "static/js/2.a4218adf.chunk.js",
     "static/css/main.e442034d.chunk.css",
-    "static/js/main.57a1af77.chunk.js"
+    "static/js/main.b098cca4.chunk.js"
   ]
 }
