@@ -84,7 +84,7 @@ const InfoCard = (props) => {
             <ButtonBase>
               <Avatar
                 variant="square"
-                alt={fullname}
+                alt="not-found"
                 src={profilepic}
                 className={classes.image}
               >

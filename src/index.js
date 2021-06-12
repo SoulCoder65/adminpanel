@@ -10,7 +10,7 @@ window.store=store;
 ReactDOM.render(
   <Provider store={store}>
       <React.StrictMode>
-   <Router>
+   <Router >
     <App />
     </Router>
 
