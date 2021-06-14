@@ -59,6 +59,7 @@ const headCells = [
   { id: "bname", label: "Business Name" },
   { id: "attender", label: "Business Attender" },
   { id: "bphone", label: "Business Contact" },
+  { id: "location", label: "Location" },
   { id: "token", label: "Token" },
   { id: "time", label: "Time" },
   { id: "actions", label: "", disableSorting: true },
@@ -145,6 +146,7 @@ const DayWiseTable = ({ data }) => {
                     : "Not Available"}
                 </TableCell>
                 <TableCell className={classes.table}>{item.phone}</TableCell>
+                <TableCell className={classes.table}>{item.location?item.location:"Not Available"}</TableCell>
                 <TableCell className={classes.table}>
                   {item.token ? item.token : "Not Available"}
                 </TableCell>
