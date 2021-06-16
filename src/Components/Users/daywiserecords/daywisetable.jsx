@@ -8,6 +8,7 @@ import {
 } from "@material-ui/core";
 import { daywiseData } from "../../../actions/useraction";
 import { useDispatch } from "react-redux";
+import Chip from "@material-ui/core/Chip";
 
 import {
   Paper,
@@ -62,6 +63,7 @@ const headCells = [
   { id: "location", label: "Location" },
   { id: "token", label: "Token" },
   { id: "time", label: "Time" },
+  { id: "status", label: "Status" },
   { id: "actions", label: "", disableSorting: true },
 ];
 
@@ -151,6 +153,42 @@ const DayWiseTable = ({ data }) => {
                   {item.token ? item.token : "Not Available"}
                 </TableCell>
                 <TableCell className={classes.table}>{item.date ? item.date : "Not Available"}</TableCell>
+                <TableCell className={classes.table}>
+                  {item.status === null ||item.status === undefined ? (
+                    <Chip
+                      size="medium"
+                      label="Pending"
+                      style={{
+                        backgroundColor: "#ffcc29",
+                        color: "black",
+                        fontWeight: "bold",
+                      }}
+                    />
+                  ) : item.status  ? (
+                    <Chip
+                      size="medium"
+                      color="white"
+                      label="Accepted"
+                      style={{
+                        backgroundColor: "#81b214",
+                        color: "black",
+                        fontWeight: "bold",
+                        padding: "5%",
+                      }}
+                    />
+                  ) : (
+                    <Chip
+                      size="medium"
+                      label="Rejected"
+                      style={{
+                        backgroundColor: "#fb3640",
+                        color: "black",
+                        fontWeight: "bold",
+                        padding: "7%",
+                      }}
+                    />
+                  )}
+                </TableCell>
               </TableRow>
             ))}
           </TableBody>

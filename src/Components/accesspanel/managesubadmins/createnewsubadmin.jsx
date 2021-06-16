@@ -42,6 +42,7 @@ const useStyles = makeStyles((theme) => ({
     },
     formControl: {
       width: "86%",
+      margin: theme.spacing(1),
     },
   },
   btn: {
@@ -160,7 +161,7 @@ const CreateSubAdmin = (props) => {
       <div>
         <form className={classes.root} noValidate autoComplete="off">
           <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="outlined-adornment-password">
+            <InputLabel htmlFor="demo-simple-select-helper" style={{marginLeft:"1%",marginTop:"2px"}}>
               Select Role
             </InputLabel>
             <Select
@@ -237,14 +238,16 @@ const CreateSubAdmin = (props) => {
 
           <FormControl
             className={classes.formControl}
-            className={clsx(classes.margin, classes.textField)}
             variant="outlined"
           >
-            <InputLabel htmlFor="outlined-adornment-password">
+            {/* <InputLabel htmlFor="outlined-adornment-password">
               Password
-            </InputLabel>
-            <OutlinedInput
-              id="outlined-adornment-password"
+            </InputLabel> */}
+            <TextField
+              id="standard-basic"
+              label="Password"
+              variant="outlined"
+
               type={values.showPassword ? "text" : "password"}
               value={values.password}
               onChange={handleChange("password")}

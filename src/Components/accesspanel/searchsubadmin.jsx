@@ -11,6 +11,7 @@ import {
 import AddnewRole from "./addnewrole";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllRoles, getAllSubAdmins } from "../../actions/auth";
+import EditRole from "./editrole";
 const useStyles = makeStyles((theme) => ({
   pageContent: {
     padding: theme.spacing(3),
@@ -64,7 +65,7 @@ const SearchSubAdmin = ({ updateAccess, role, setrole }) => {
             style={{ color: "red", width: "1px", marginRight: "5px" }}
           />
 
-          <Grid item sm={7} xs={12}>
+          <Grid item sm={9} md={5}  xs={12}>
             <Select
               style={{ width: "100%", minWidth: "50%" }}
               labelId="demo-simple-select-helper-label"
@@ -86,6 +87,9 @@ const SearchSubAdmin = ({ updateAccess, role, setrole }) => {
           </Grid>
           <Grid item md={2} style={{width:"100%"}} alignContent="flex-end">
             <AddnewRole updatesRoles={updatesRoles} />
+          </Grid>
+          <Grid item md={2} style={{width:"100%"}} alignContent="flex-end">
+            <EditRole updatesRoles={updatesRoles} />
           </Grid>
         </Grid>
       </Paper>

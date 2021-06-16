@@ -240,7 +240,8 @@ const BusinessQueryTable = ({ data }) => {
                             status: item.status,
                             email:item.email,
                             profilepic:item.profilepic,
-                            updateStatus:updateStatus
+                            updateStatus:updateStatus,
+                            check:item.status==="Pending"?true:false,
                           }}
                           style={{zIndex: 1000}}
                         />,

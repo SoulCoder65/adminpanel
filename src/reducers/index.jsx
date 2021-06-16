@@ -31,7 +31,7 @@ import getAllRoles from "./admin/getallrolesreducers"
 import createnewrole from "./admin/createrolereducer"
 import updateaccess from "./admin/updateaccessreducers"
 import getspecificrole from "./admin/getspecificrolereducer"
-
+import updaterole from "./admin/updaterolereducer"
 const rootReducer=combineReducers(
     {
         auth:authreducer,
@@ -63,8 +63,8 @@ const rootReducer=combineReducers(
         getAllroles:getAllRoles,
         createnewrole:createnewrole,
         updateaccess:updateaccess,
-        getspecificrole:getspecificrole
-
+        getspecificrole:getspecificrole,
+        updaterole:updaterole
 
     }
 )

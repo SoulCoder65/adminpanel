@@ -62,6 +62,7 @@ const InfoCard = (props) => {
     email,
     profilepic,
     updateStatus,
+    check
   } = props.props.data;
   const { dialog } = props;
   const classes = useStyles();
@@ -88,7 +89,7 @@ const InfoCard = (props) => {
                 src={profilepic}
                 className={classes.image}
               >
-                {fullname[0]!=null?fullname[0]:"NA"}
+                {fullname!=null?fullname[0]:"NA"}
               </Avatar>
             </ButtonBase>
           </Grid>
@@ -147,7 +148,7 @@ const InfoCard = (props) => {
             </Container>
           </Grid>
         </Grid>
-        <div>
+        {check?<div>
           <Grid
             container
             style={{ width: "100%", marginTop: "2%" }}
@@ -203,7 +204,7 @@ const InfoCard = (props) => {
               </Button>
             </Grid>
           </Grid>
-        </div>
+        </div>:null}
       </Paper>
     </div>
   );

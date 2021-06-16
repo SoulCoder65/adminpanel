@@ -1,4 +1,10 @@
-import { businessQueriesStatic,updateBusinessQueriesStatic,usersQueriesStatic,updateUsersQueriesStatic} from "./static";
+import {
+  businessQueriesStatic,
+  updateBusinessQueriesStatic,
+  usersQueriesStatic,
+  updateUsersQueriesStatic,
+  authStatic,
+} from "./static";
 import axios from "../helpers/axios";
 // <======================BusinessQueries=================================>
 export const getBusinessQueries = (date) => {
@@ -31,18 +37,20 @@ export const getBusinessQueries = (date) => {
           error: error.response,
         },
       });
-      return error
+      return error;
     }
   };
 };
 
-export const updateBusinessQuery = (_id,status) => {
+export const updateBusinessQuery = (_id, status) => {
   return async (dispatch) => {
-    dispatch({ type: updateBusinessQueriesStatic.UPDATE_BUSINESS_QUERIES_STATIC_REQUEST });
+    dispatch({
+      type: updateBusinessQueriesStatic.UPDATE_BUSINESS_QUERIES_STATIC_REQUEST,
+    });
     try {
       const res = await axios.post("/adminpanel/updatebusinessquerystatus", {
         _id,
-        status
+        status,
       });
       if (res.status === 200) {
         dispatch({
@@ -67,7 +75,7 @@ export const updateBusinessQuery = (_id,status) => {
           error: error.response,
         },
       });
-      return error
+      return error;
     }
   };
 };
@@ -104,19 +112,20 @@ export const getUsersQueries = (date) => {
           error: error.response,
         },
       });
-      return error
+      return error;
     }
   };
 };
 
-
-export const updateUserQuery = (_id,status) => {
+export const updateUserQuery = (_id, status) => {
   return async (dispatch) => {
-    dispatch({ type: updateUsersQueriesStatic.UPDATE_USER_QUERIES_STATIC_REQUEST });
+    dispatch({
+      type: updateUsersQueriesStatic.UPDATE_USER_QUERIES_STATIC_REQUEST,
+    });
     try {
       const res = await axios.post("/adminpanel/updateUserQueryStatus", {
         _id,
-        status
+        status,
       });
       if (res.status === 200) {
         dispatch({
@@ -135,19 +144,76 @@ export const updateUserQuery = (_id,status) => {
       }
       return res;
     } catch (error) {
-      dispatch({
-        type: updateUsersQueriesStatic.UPDATE_USER_QUERIES_STATIC_FAILURE,
-        payload: {
-          error: error.response,
-        },
-      });
-      return error
+      if (error.response) {
+        dispatch({
+          type: updateUsersQueriesStatic.UPDATE_USER_QUERIES_STATIC_FAILURE,
+          payload: {
+            error: error.response,
+          },
+        });
+      } else {
+        dispatch({
+          type: updateUsersQueriesStatic.UPDATE_USER_QUERIES_STATIC_FAILURE,
+          payload: {
+            error: "Something Went Wrong",
+          },
+        });
+      }
+      return error;
     }
   };
 };
 
 // <------------------------Get all admins------------------->
 
-
-
 // <------------------------Get all admins END------------------->
+
+export const updateRole = (role_name, updated_role) => {
+  return async (dispatch) => {
+    dispatch({ type: authStatic.UPDATE_ROLE_REQUEST });
+    try {
+      const res = await axios.post("/adminpanel/updaterole", {
+        role_name,
+        updated_role,
+      });
+      console.log(res)
+      if (res.status === 200) {
+        dispatch({
+          type: authStatic.UPDATE_ROLE_SUCCESS,
+          payload: {
+            data: res.data,
+          },
+        });
+      } else {
+        dispatch({
+          type: authStatic.UPDATE_ROLE_FAILURE,
+          payload: {
+            data: res.data,
+          },
+        });
+      }
+      return res;
+    } catch (error) {
+     if(error.response)
+     {
+
+      dispatch({
+        type: authStatic.UPDATE_ROLE_FAILURE,
+        payload: {
+          error: error.response,
+        },
+      });
+      return error.response;
+   
+    }else{
+      dispatch({
+        type: authStatic.UPDATE_ROLE_FAILURE,
+        payload: {
+          error: "Something Went Wrong",
+        },
+      });
+     }
+      return error;
+    }
+  };
+};

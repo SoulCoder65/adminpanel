@@ -63,6 +63,7 @@ const InfoCard = (props) => {
     email,
     profilepic,
     updateStatus,
+    check
   } = props.props.data;
   const { dialog } = props;
   const classes = useStyles();
@@ -155,7 +156,7 @@ const InfoCard = (props) => {
             </Container>
           </Grid>
         </Grid>
-        <div>
+        {check?<div>
           <Grid
             container
             style={{ width: "100%", marginTop: "2%" }}
@@ -211,7 +212,7 @@ const InfoCard = (props) => {
               </Button>
             </Grid>
           </Grid>
-        </div>
+        </div>:null}
       </Paper>
     </div>
   );

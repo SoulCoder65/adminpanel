@@ -126,6 +126,7 @@ const BusinessTable = ({ data }) => {
       confirmButtonText: "Yes",
       cancelButtonText: "Cancel",
     }).then((res) => {
+     try {
       if (res.value) {
         dispatch(blockUnblock(_id, !isBlock)).then((dt) => {
           if (dt.data === "success") {
@@ -150,6 +151,10 @@ const BusinessTable = ({ data }) => {
           "error"
         );
       }
+     } catch (error) {
+      Swal.fire("Failed", `Something Went Wrong Try Again`, "warning");
+
+     }
     });
   };
 

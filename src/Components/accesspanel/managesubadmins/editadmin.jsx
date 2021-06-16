@@ -1,4 +1,4 @@
-import React, {  useState } from "react";
+import React, { useState } from "react";
 import { CustomDialog, useDialog } from "react-st-modal";
 import Button from "@material-ui/core/Button";
 import { makeStyles } from "@material-ui/core/styles";
@@ -40,26 +40,26 @@ const useStyles = makeStyles((theme) => ({
     textField: {
       width: "90%",
     },
-   
   },
-   btn:{
-      [theme.breakpoints.down("md")]: {
-        // width:"4px"
-      // fontSize:"10px" 
-      },
+  btn: {
+    [theme.breakpoints.down("md")]: {
+      // width:"4px"
+      // fontSize:"10px"
     },
-    formControl:{
-      width:"96%"
-    }
+  },
+  formControl: {
+    width: "96%",
+  },
 }));
 
-const UpdateSubAdmin = ({ data,updateFun }) => {
+const UpdateSubAdmin = ({ data, updateFun }) => {
+  console.log(data);
+
   const dispatch = useDispatch();
   const classes = useStyles();
   const allroles = useSelector((state) => state.getAllroles);
 
   function CustomDialogContent(props) {
-
     const dialog = useDialog();
     const [value, setValue] = useState();
 
@@ -68,7 +68,7 @@ const UpdateSubAdmin = ({ data,updateFun }) => {
       fullname: data.fullname !== null ? data.fullname : "",
       email: data.email !== null ? data.email : "",
       phone: data.phone !== null ? data.phone : "",
-      role: data.role !== null ? data.role : "",
+      role: data.role !== null && data.role !== undefined ? data.role : "",
       isActive: data.isActive !== null ? data.isActive : false,
     });
 
@@ -121,7 +121,7 @@ const UpdateSubAdmin = ({ data,updateFun }) => {
         dispatch(editSubAdmins(values)).then((res) => {
           try {
             if (res.status === 200) {
-              updateFun()
+              updateFun();
               Swal.fire("Success", `Account Updated Successfully`, "success");
               dialog.close(value);
             } else if (res.status === 400) {
@@ -144,7 +144,10 @@ const UpdateSubAdmin = ({ data,updateFun }) => {
       <div>
         <form className={classes.root} noValidate autoComplete="off">
           <FormControl className={classes.formControl}>
-            <InputLabel htmlFor="outlined-adornment-password">
+            <InputLabel
+              htmlFor="demo-simple-select-helper"
+              style={{ marginLeft: "1%",marginTop:"2px" }}
+            >
               Select Role
             </InputLabel>
             <Select
@@ -174,7 +177,7 @@ const UpdateSubAdmin = ({ data,updateFun }) => {
           </FormControl>
 
           <TextField
-          className={classes.formControl}
+            className={classes.formControl}
             id="standard-basic"
             label="Full Name"
             variant="outlined"
@@ -187,7 +190,7 @@ const UpdateSubAdmin = ({ data,updateFun }) => {
             </FormHelperText>
           ) : null}
           <TextField
-          className={classes.formControl}
+            className={classes.formControl}
             id="standard-basic"
             label="Phone"
             variant="outlined"
@@ -201,7 +204,7 @@ const UpdateSubAdmin = ({ data,updateFun }) => {
           ) : null}
 
           <TextField
-          className={classes.formControl}
+            className={classes.formControl}
             id="standard-basic"
             label="E-mail"
             variant="outlined"
@@ -215,7 +218,6 @@ const UpdateSubAdmin = ({ data,updateFun }) => {
           ) : null}
         </form>
         <FormControlLabel
-
           style={{ marginLeft: "1%" }}
           control={
             <Switch
@@ -227,12 +229,12 @@ const UpdateSubAdmin = ({ data,updateFun }) => {
           }
           label="Active"
         />
-        <div >
+        <div>
           <Button
             variant="contained"
             color="primary"
             style={{ marginLeft: "5%", marginBottom: "20px" }}
-           onClick={submitForm}
+            onClick={submitForm}
           >
             Save
           </Button>

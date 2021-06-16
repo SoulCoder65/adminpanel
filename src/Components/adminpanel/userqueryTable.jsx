@@ -233,6 +233,8 @@ const UserQueryTable = ({ data }) => {
                               email: item.email,
                               profilepic: item.profilepic,
                               updateStatus: updateStatus,
+                              check:item.status==="Pending"?true:false,
+                         
                             }}
                             style={{ zIndex: 1000 }}
                           />,
