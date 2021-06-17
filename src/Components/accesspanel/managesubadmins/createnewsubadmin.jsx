@@ -29,7 +29,7 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& > *": {
       margin: theme.spacing(1),
-      width: "98%",
+      width: "95%",
     },
     input: {
       display: "none",
@@ -40,10 +40,15 @@ const useStyles = makeStyles((theme) => ({
     withoutLabel: {
       marginTop: theme.spacing(3),
     },
-    formControl: {
-      width: "86%",
-      margin: theme.spacing(1),
+    textField: {
+      width: "90%",
     },
+    formControl: {
+      width: "96%",
+    },
+    // textField: {
+    //   width: "90%",
+    // },
   },
   btn: {
     backgroundColor: "#cf0000",
@@ -131,8 +136,7 @@ const CreateSubAdmin = (props) => {
           roleError: false,
         });
 
-        console.log(values);
-        dispatch(signup(values)).then((res) => {
+         dispatch(signup(values)).then((res) => {
           try {
             if (res.status === 200) {
               Swal.fire(
@@ -179,11 +183,6 @@ const CreateSubAdmin = (props) => {
                     );
                   })
                 : null}
-              {/* <MenuItem value="HR">HR</MenuItem>;
-              <MenuItem value="support">Support</MenuItem>;
-              <MenuItem value="sales">Sales</MenuItem>;
-              <MenuItem value="tech">Tech</MenuItem>;
-              <MenuItem value="admin">Admin</MenuItem>; */}
             </Select>
             {errors.roleError ? (
               <FormHelperText
@@ -275,7 +274,6 @@ const CreateSubAdmin = (props) => {
             ) : null}
           </FormControl>
         </form>
-        <div style={{ width: "100%" }}>
           <Button
             variant="contained"
             color="primary"
@@ -284,8 +282,7 @@ const CreateSubAdmin = (props) => {
           >
             Add
           </Button>
-        </div>
-      </div>
+       </div>
     );
   }
 

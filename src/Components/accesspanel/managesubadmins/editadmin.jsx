@@ -53,7 +53,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const UpdateSubAdmin = ({ data, updateFun }) => {
-  console.log(data);
 
   const dispatch = useDispatch();
   const classes = useStyles();

@@ -118,16 +118,15 @@ const InfoCard = (props) => {
         </Grid>
 
         <Grid container spacing={1}>
-          <Grid item xs={2}>
+          <Grid item xs={4}>
             <Typography gutterBottom variant="subtitle1">
               Subject
             </Typography>
           </Grid>
-          <Grid item xs={7}>
+          <Grid item xs={6}>
             <Typography
               gutterBottom
               variant="subtitle1"
-              style={{ marginLeft: "16%" }}
             >
               {title}
             </Typography>
@@ -135,12 +134,12 @@ const InfoCard = (props) => {
         </Grid>
 
         <Grid container spacing={1}>
-          <Grid item xs={2}>
+          <Grid item xs={4}>
             <Typography gutterBottom variant="subtitle1">
               Description
             </Typography>
           </Grid>
-          <Grid item xs={9}>
+          <Grid item xs={6}>
             <Container
               style={{
                 maxHeight: "130px",
